@@ -33,7 +33,7 @@ import h5py
 import numpy as np
 import tensorflow as tf
 from huggingface_hub import Repository, list_repo_files
-from keras import backend as K
+from tf_keras import backend as K
 from packaging.version import parse
 from tensorflow.python.util.keras_deps import get_call_context_function
 
