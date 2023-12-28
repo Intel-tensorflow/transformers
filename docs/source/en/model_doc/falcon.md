@@ -18,27 +18,43 @@ rendered properly in your Markdown viewer.
 
 ## Overview
 
-Falcon is a state-of-the-art language model trained on the [RefinedWeb dataset](https://arxiv.org/abs/2306.01116). At the time of writing, it is the leading model on the [OpenLLM leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard). 
+Falcon is a class of causal decoder-only models built by [TII](https://www.tii.ae/). The largest Falcon checkpoints
+have been trained on >=1T tokens of text, with a particular emphasis on the [RefinedWeb](https://arxiv.org/abs/2306.01116)
+corpus. They are made available under the Apache 2.0 license.
 
-There is no paper associated with Falcon yet, but for citation information please see [the repository for Falcon-40B](https://huggingface.co/tiiuae/falcon-40b#citation), the highest-performance Falcon model. 
 
-- The model and tokenizer can be loaded via:
+Falcon's architecture is modern and optimized for inference, with multi-query attention and support for efficient
+attention variants like `FlashAttention`. Both 'base' models trained only as causal language models as well as
+'instruct' models that have received further fine-tuning are available.
 
-```python
-from transformers import AutoModelForCausalLM, AutoTokenizer
 
-tokenizer = AutoTokenizer.from_pretrained("tiiuae/falcon-40b-instruct")
-model = AutoModelForCausalLM.from_pretrained("tiiuae/falcon-40b-instruct")
+Falcon models are (as of 2023) some of the largest and most powerful open-source language models,
+and consistently rank highly in the [OpenLLM leaderboard](https://huggingface.co/spaces/HuggingFaceH4/open_llm_leaderboard).
 
-inputs = tokenizer("What's the best way to divide a pizza between three people?", return_tensors="pt")
-outputs = model.generate(**inputs, max_length=50)
-```
+## Converting custom checkpoints 
 
-- The Falcon tokenizer is a BPE model.
+<Tip>
+
+Falcon models were initially added to the Hugging Face Hub as custom code checkpoints. However, Falcon is now fully
+supported in the Transformers library. If you fine-tuned a model from a custom code checkpoint, we recommend converting
+your checkpoint to the new in-library format, as this should give significant improvements to stability and
+performance, especially for generation, as well as removing the need to use `trust_remote_code=True`!
+
+</Tip>
+
+You can convert custom code checkpoints to full Transformers checkpoints using the `convert_custom_code_checkpoint.py` 
+script located in the
+[Falcon model directory](https://github.com/huggingface/transformers/tree/main/src/transformers/models/falcon)
+of the Transformers library. To use this script, simply call it with 
+`python convert_custom_code_checkpoint.py --checkpoint_dir my_model`. This will convert your checkpoint in-place, and
+you can immediately load it from the directory afterwards with e.g. `from_pretrained()`. If your model hasn't been
+uploaded to the Hub, we recommend making a backup before attempting the conversion, just in case!
+
 
 ## FalconConfig
 
 [[autodoc]] FalconConfig
+    - all
 
 ## FalconModel
 
@@ -64,3 +80,5 @@ outputs = model.generate(**inputs, max_length=50)
 
 [[autodoc]] FalconForQuestionAnswering
     - forward
+
+

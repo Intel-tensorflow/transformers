@@ -30,6 +30,13 @@ class TFForcedEOSTokenLogitsProcessor(metaclass=DummyObject):
         requires_backends(self, ["tf"])
 
 
+class TFForceTokensLogitsProcessor(metaclass=DummyObject):
+    _backends = ["tf"]
+
+    def __init__(self, *args, **kwargs):
+        requires_backends(self, ["tf"])
+
+
 class TFGenerationMixin(metaclass=DummyObject):
     _backends = ["tf"]
 
@@ -80,6 +87,20 @@ class TFNoRepeatNGramLogitsProcessor(metaclass=DummyObject):
 
 
 class TFRepetitionPenaltyLogitsProcessor(metaclass=DummyObject):
+    _backends = ["tf"]
+
+    def __init__(self, *args, **kwargs):
+        requires_backends(self, ["tf"])
+
+
+class TFSuppressTokensAtBeginLogitsProcessor(metaclass=DummyObject):
+    _backends = ["tf"]
+
+    def __init__(self, *args, **kwargs):
+        requires_backends(self, ["tf"])
+
+
+class TFSuppressTokensLogitsProcessor(metaclass=DummyObject):
     _backends = ["tf"]
 
     def __init__(self, *args, **kwargs):
@@ -815,6 +836,27 @@ class TFConvNextPreTrainedModel(metaclass=DummyObject):
         requires_backends(self, ["tf"])
 
 
+class TFConvNextV2ForImageClassification(metaclass=DummyObject):
+    _backends = ["tf"]
+
+    def __init__(self, *args, **kwargs):
+        requires_backends(self, ["tf"])
+
+
+class TFConvNextV2Model(metaclass=DummyObject):
+    _backends = ["tf"]
+
+    def __init__(self, *args, **kwargs):
+        requires_backends(self, ["tf"])
+
+
+class TFConvNextV2PreTrainedModel(metaclass=DummyObject):
+    _backends = ["tf"]
+
+    def __init__(self, *args, **kwargs):
+        requires_backends(self, ["tf"])
+
+
 TF_CTRL_PRETRAINED_MODEL_ARCHIVE_LIST = None
 
 
@@ -953,6 +995,13 @@ class TFDebertaV2ForMaskedLM(metaclass=DummyObject):
         requires_backends(self, ["tf"])
 
 
+class TFDebertaV2ForMultipleChoice(metaclass=DummyObject):
+    _backends = ["tf"]
+
+    def __init__(self, *args, **kwargs):
+        requires_backends(self, ["tf"])
+
+
 class TFDebertaV2ForQuestionAnswering(metaclass=DummyObject):
     _backends = ["tf"]
 
@@ -1020,6 +1069,51 @@ class TFDeiTModel(metaclass=DummyObject):
 
 
 class TFDeiTPreTrainedModel(metaclass=DummyObject):
+    _backends = ["tf"]
+
+    def __init__(self, *args, **kwargs):
+        requires_backends(self, ["tf"])
+
+
+TF_TRANSFO_XL_PRETRAINED_MODEL_ARCHIVE_LIST = None
+
+
+class TFAdaptiveEmbedding(metaclass=DummyObject):
+    _backends = ["tf"]
+
+    def __init__(self, *args, **kwargs):
+        requires_backends(self, ["tf"])
+
+
+class TFTransfoXLForSequenceClassification(metaclass=DummyObject):
+    _backends = ["tf"]
+
+    def __init__(self, *args, **kwargs):
+        requires_backends(self, ["tf"])
+
+
+class TFTransfoXLLMHeadModel(metaclass=DummyObject):
+    _backends = ["tf"]
+
+    def __init__(self, *args, **kwargs):
+        requires_backends(self, ["tf"])
+
+
+class TFTransfoXLMainLayer(metaclass=DummyObject):
+    _backends = ["tf"]
+
+    def __init__(self, *args, **kwargs):
+        requires_backends(self, ["tf"])
+
+
+class TFTransfoXLModel(metaclass=DummyObject):
+    _backends = ["tf"]
+
+    def __init__(self, *args, **kwargs):
+        requires_backends(self, ["tf"])
+
+
+class TFTransfoXLPreTrainedModel(metaclass=DummyObject):
     _backends = ["tf"]
 
     def __init__(self, *args, **kwargs):
@@ -2558,51 +2652,6 @@ class TFTapasModel(metaclass=DummyObject):
 
 
 class TFTapasPreTrainedModel(metaclass=DummyObject):
-    _backends = ["tf"]
-
-    def __init__(self, *args, **kwargs):
-        requires_backends(self, ["tf"])
-
-
-TF_TRANSFO_XL_PRETRAINED_MODEL_ARCHIVE_LIST = None
-
-
-class TFAdaptiveEmbedding(metaclass=DummyObject):
-    _backends = ["tf"]
-
-    def __init__(self, *args, **kwargs):
-        requires_backends(self, ["tf"])
-
-
-class TFTransfoXLForSequenceClassification(metaclass=DummyObject):
-    _backends = ["tf"]
-
-    def __init__(self, *args, **kwargs):
-        requires_backends(self, ["tf"])
-
-
-class TFTransfoXLLMHeadModel(metaclass=DummyObject):
-    _backends = ["tf"]
-
-    def __init__(self, *args, **kwargs):
-        requires_backends(self, ["tf"])
-
-
-class TFTransfoXLMainLayer(metaclass=DummyObject):
-    _backends = ["tf"]
-
-    def __init__(self, *args, **kwargs):
-        requires_backends(self, ["tf"])
-
-
-class TFTransfoXLModel(metaclass=DummyObject):
-    _backends = ["tf"]
-
-    def __init__(self, *args, **kwargs):
-        requires_backends(self, ["tf"])
-
-
-class TFTransfoXLPreTrainedModel(metaclass=DummyObject):
     _backends = ["tf"]
 
     def __init__(self, *args, **kwargs):

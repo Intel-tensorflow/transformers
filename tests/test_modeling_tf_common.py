@@ -330,6 +330,9 @@ class TFModelTesterMixin:
 
             self.assertEqual(len(incompatible_ops), 0, incompatible_ops)
 
+    # `tf2onnx` issue page: https://github.com/onnx/tensorflow-onnx/issues/2172
+    # TODO: undo skip once a fix is done in `tf2onnx`
+    @unittest.skip("`tf2onnx` broke with TF 2.13")
     @require_tf2onnx
     @slow
     def test_onnx_runtime_optimize(self):
@@ -462,7 +465,6 @@ class TFModelTesterMixin:
             "TFFunnelForPreTraining",
             "TFElectraForPreTraining",
             "TFXLMWithLMHeadModel",
-            "TFTransfoXLLMHeadModel",
         ]:
             for k in key_differences:
                 if k in ["loss", "losses"]:
@@ -573,7 +575,7 @@ class TFModelTesterMixin:
     def prepare_pt_inputs_from_tf_inputs(self, tf_inputs_dict):
         pt_inputs_dict = {}
         for name, key in tf_inputs_dict.items():
-            if type(key) == bool:
+            if isinstance(key, bool):
                 pt_inputs_dict[name] = key
             elif name == "input_values":
                 pt_inputs_dict[name] = torch.from_numpy(key.numpy()).to(torch.float32)
